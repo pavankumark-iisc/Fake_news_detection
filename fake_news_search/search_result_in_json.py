@@ -1,6 +1,7 @@
 import json
 from retrieval_pipeline import retrieve_evidence_for_claim
 from llm_verdict import compute_verdict_and_explanation
+from llm_helper import correct_sentence
 
 def main():
     claim = input("Enter a claim to retrieve evidence for:\n> ").strip()
@@ -22,16 +23,13 @@ def main():
         for ev in evidence_list[:5]
     ]
 
-    verdict_result = compute_verdict_and_explanation(claim, processed_evidence)
+    evidence_input = [
+    {"snippet": ev.get("snippet", "").strip(), "url": ev.get("url", "")}
+    for ev in evidence_list if ev.get("snippet")
+    ]
+    result = correct_sentence(claim, evidence_input)
 
-    final_output = {
-        "claim": claim,
-        "verdict": verdict_result["verdict"],
-        "explanation": verdict_result["explanation"],
-        "evidence": processed_evidence
-    }
-
-    print(json.dumps(final_output, indent=2, ensure_ascii=False))
+    print(result)
 
 if __name__ == "__main__":
     main()
