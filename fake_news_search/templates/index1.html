@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mic to Text - ASR</title>
+  <style>
+    body { font-family: Arial; padding: 2em; background: #f9f9f9; }
+    button { margin: 5px; padding: 10px; }
+    #result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>🎙️ Record your voice and transcribe</h2>
+  <button id="startBtn">Start Recording</button>
+  <button id="stopBtn" disabled>Stop Recording</button>
+  <button id="uploadBtn" disabled>Submit to ASR</button>
+  <br><br>
+  <audio id="audioPlayback" controls style="display: none;"></audio>
+  <div id="result"></div>
+
+  <script>
+    let mediaRecorder;
+    let audioChunks = [];
+
+    const startBtn = document.getElementById("startBtn");
+    const stopBtn = document.getElementById("stopBtn");
+    const uploadBtn = document.getElementById("uploadBtn");
+    const audioPlayback = document.getElementById("audioPlayback");
+    const resultDiv = document.getElementById("result");
+
+    startBtn.onclick = async () => {
+      audioChunks = [];
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
+
+      mediaRecorder.ondataavailable = (e) => {
+        if (e.data.size > 0) audioChunks.push(e.data);
+      };
+
+      mediaRecorder.onstop = () => {
+        const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+        const audioUrl = URL.createObjectURL(audioBlob);
+        audioPlayback.src = audioUrl;
+        audioPlayback.style.display = "block";
+        uploadBtn.audioBlob = audioBlob;
+        uploadBtn.disabled = false;
+      };
+
+      mediaRecorder.start();
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+    };
+
+    stopBtn.onclick = () => {
+      mediaRecorder.stop();
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+    };
+
+    uploadBtn.onclick = () => {
+      const formData = new FormData();
+      formData.append("audio", uploadBtn.audioBlob, "recording.webm");
+
+      resultDiv.innerText = "Transcribing...";
+
+      fetch("/process_audio", {
+        method: "POST",
+        body: formData
+      })
+        .then(res => res.json())
+        .then(data => {
+          resultDiv.innerText = data.transcript || JSON.stringify(data);
+        })
+        .catch(err => {
+          console.error(err);
+          resultDiv.innerText = "Error occurred during transcription.";
+        });
+    };
+  </script>
+</body>
+</html>
