@@ -21,13 +21,13 @@ def handle_input(choice, text_input, audio_input):
     """
     if choice == 'Text':
         if text_input.strip() == '':
-            return 'Please input the news to verify','Please input the news to verify'
+            return 'Please input the news to verify','Please input the news to verify','Please input the news to verify'
         return verify_news(text_input)
     elif choice == 'Audio':
         if audio_input:
             return verify_news_audio(audio_input)
         else:
-            return 'Please record something first','Please record something first'
+            return 'Please record something first','Please record something first','Please record something first'
     else:
         return 'Please chose one of the radio button for input','Please chhose one of the radio button for input'
         
