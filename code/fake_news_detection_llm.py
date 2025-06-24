@@ -312,7 +312,7 @@ def verify_news(user_claim, input_lang = 'auto'):
     
 def transcribe_audio(audio):
     """
-       Description: This function trascibes audio using SarvamAI STT model 
+       Description: This function transcribes audio using SarvamAI STT model 
     """
     try:
         client = SarvamAI(api_subscription_key = sarvam_api_key)
