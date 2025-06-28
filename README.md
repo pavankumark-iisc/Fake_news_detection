@@ -30,13 +30,11 @@ Step 3: execute app.py file
 
 # Hosted Demo
 This project is hosted on Hugging Face Spaces. You can try it live by clicking the link below: 
-🔗 Try it here: [Fake News Detection LLM on Hugging Face](https://huggingface.co/spaces/rahul8459875/Fake_News_Detection_LLM) 
+Try it here: [Fake News Detection LLM on Hugging Face](https://huggingface.co/spaces/rahul8459875/Fake_News_Detection_LLM) 
 No installation needed — just paste or speak a claim to get started! 
 
 NOTE: This file(code/fake_news_detection_llm.py) contains the full pipeline for news verification using RAG, LangChain, SarvamAI, and Groq.
 Refer code folder for more details.
-
-=======================================================================================================================================================
 
 # Evaluation Metrics
 
