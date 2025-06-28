@@ -1,52 +1,53 @@
-# 🤝 Contributors
+# Contributors
 Rahul Kumar, Rahul Rai, Vishakha Kumari, Manoj Kumar, Mukunda, Pavan Kumar, Rajat Chaudhary
 
 # Description
-This project implements an intelligent chatbot capable of verifying whether a news claim — provided as text or audio — is REAL, FAKE, or UNSURE. It uses a hybrid architecture that combines:
-    -> Retrieval-Augmented Generation (RAG) for grounding the model's reasoning in factual web-based evidence.  
+This project implements an intelligent chatbot capable of verifying whether a news claim — provided as text or audio — is REAL, FAKE, or UNSURE. It uses a hybrid architecture that combines:  
+    -> Retrieval-Augmented Generation (RAG) for grounding the model's reasoning in factual web-based evidence.   
     -> SarvamAI APIs for real-time speech-to-text (STT) conversion and translation.  
     -> ChatGroq-powered LLMs (Qwen2.5, Mistral, LLaMA) for fact-checking, explanation, and natural language reasoning.  
 
 # Key Features:
-🔤 Input Flexibility: Accepts user input in multiple languages and formats (typed text, spoken audio).  
-🌐 Multilingual Processing: Automatically translates non-English claims to English using SarvamAI and processes them through the LLM pipeline.  
-🧠 Dual-Language Output: Explanations are returned in both English and the original input language for clarity and accessibility.  
-🔎 Grounded Fact Checking: Verifies claims using real-time search results(trusted sources (e.g., news18.com, ptinews.com)) and generates evidence-supported explanations via a LangChain RAG workflow.  
-🤖 Powered by Open Source LLMs: Supports Qwen2.5, Mistral, and Phi-3-mini through the ChatGroq LLM API for fast and scalable responses.  
+-> Input Flexibility: Accepts user input in multiple languages and formats (typed text, spoken audio).  
+-> Multilingual Processing: Automatically translates non-English claims to English using SarvamAI and processes them through the LLM pipeline.  
+-> Dual-Language Output: Explanations are returned in both English and the original input language for clarity and accessibility.  
+-> Grounded Fact Checking: Verifies claims using real-time search results(trusted sources (e.g news18.com, ptinews.com)) and generates evidence-supported explanations via a LangChain RAG workflow.  
+-> Powered by Open Source LLMs: Supports Qwen2.5, Mistral, and Phi-3-mini through the ChatGroq LLM API for fast and scalable responses.  
 
-# 🔍 How It Works
+# How It Works
 1) Accepts a news claim as text or audio(in any Indian language).
 2) Translates to English using SarvamAI (if needed).
 3) Performs intelligent web search using Serper.dev.
-4) Applies multi-query RAG to gather and summarize evidence.git
+4) Applies multi-query RAG to gather and summarize evidence.git.
 5) Uses an LLM to classify the claim as REAL / FAKE / UNSURE with explanation.
 6) Optionally translates the verdict back to the original language.
 
-# 📦 Setup
+# Setup
 Step1: Install dependencies: pip install -r requirements.txt  
 Step2: Create a .env file with:  
     SARVAM_API_KEY, GROK_API_KEY, SERP_DEV_API_KEY, model_multi_query, model_summarizer, model_judge.  
 Step 3: execute app.py file  
 
-# 🚀 Hosted Demo
-This project is also hosted on Hugging Face Spaces. You can try it live by clicking the link below:
-🔗 Try it here: [Fake News Detection LLM on Hugging Face](https://huggingface.co/spaces/rahul8459875/Fake_News_Detection_LLM)
-No installation needed — just paste or speak a claim to get started!
+# Hosted Demo
+This project is hosted on Hugging Face Spaces. You can try it live by clicking the link below: 
+🔗 Try it here: [Fake News Detection LLM on Hugging Face](https://huggingface.co/spaces/rahul8459875/Fake_News_Detection_LLM) 
+No installation needed — just paste or speak a claim to get started! 
 
 NOTE: This file(code/fake_news_detection_llm.py) contains the full pipeline for news verification using RAG, LangChain, SarvamAI, and Groq.
+Refer code folder for more details.
 
 =======================================================================================================================================================
 
-# 📊 Evaluation Metrics
+# Evaluation Metrics
 
-The following tables summarize performance across languages and input types using different LLMs and strategies.
+The following tables summarize performance across languages and input types using different LLMs and strategies.  
 
-Strategy 1: Multi-query generation from the input claim, followed by document retrieval and summarization. The resulting summary was then passed to the verdict-generation prompt (Judge Prompt).
-Strategy 2: Multi-query generation and document retrieval, with raw retrieved documents passed directly to the verdict-generation prompt, skipping summarization.
+Strategy 1: Multi-query generation from the input claim, followed by document retrieval and summarization. The resulting summary was then passed to the verdict-generation prompt (Judge Prompt).  
+Strategy 2: Multi-query generation and document retrieval, with raw retrieved documents passed directly to the verdict-generation prompt, skipping summarization.  
 Strategy 3: Direct retrieval using the original claim (no rephrasing), followed by summarization and verdict generation.
 Each combination of model and strategy was evaluated based on:
 
-## 🗣️ LLM Evaluation — English Claims (Strategy 3)
+## LLM Evaluation — English Claims (Strategy 3)
 
 | Model	                                       |      Strategy 1   |    Strategy 2	   |    Strategy 3    |
 |----------------------------------------------|----------------------------------------------------------|
@@ -63,7 +64,7 @@ Each combination of model and strategy was evaluated based on:
 
 TC - TotalCoverage, F1R - F1 Score(Real), F1F - F1 Score(Fake)
 
-## 🌐 LLM Evaluation — Regional Languages (Hindi/Kannada)
+## LLM Evaluation — Regional Languages (Hindi/Kannada)
 
 | Model                                           | Coverage | F1 Score (Real) | F1 Score (Fake) |
 |------------------------------------------------|----------|------------------|------------------|
@@ -76,7 +77,7 @@ TC - TotalCoverage, F1R - F1 Score(Real), F1F - F1 Score(Fake)
 | qwen-qwq-32b                                     | 0.66     | 0.89             | 0.57            |
 |--------------------------------------------------------------------------------------------------|
 
-## 🔊 LLM Evaluation — Audio Inputs (Multilingual)
+## LLM Evaluation — Audio Inputs (Multilingual)
 
 | Model            | Coverage | F1 Score (Real) | F1 Score (Fake) |
 |------------------|----------|------------------|------------------|
@@ -85,7 +86,7 @@ TC - TotalCoverage, F1R - F1 Score(Real), F1F - F1 Score(Fake)
 | qwen-qwq-32b     | 0.51     | 0.66             | 0.64             |
 |-------------------------------------------------------------------|
 
-## 🧠 SarvamAI Speech & Translation Performance
+## SarvamAI Speech & Translation Performance
 
 | Metric        | Score   |
 |---------------|---------|
