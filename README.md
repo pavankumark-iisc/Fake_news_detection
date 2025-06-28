@@ -58,7 +58,7 @@ Each combination of model and strategy was evaluated based on:
 | meta-llama/llama-4-scout-17b-16e-instruct	   | 67% | 0.9	| 0.65 | 30% | 0.94	| 0.34 | 0.7 | 0.91	| 0.71|
 | meta-llama/llama-4-maverick-17b-128e-instruct| 68% | 0.9	| 0.66 | 32% | 0.92	| 0.38 | 0.52| 0.95	| 0.65|
 | qwen-qwq-32b	                               | 84% | 0.9	| 0.88 | 32% | 0.93	| 0.4  | 0.67| 0.91	| 0.73|
-|---------------------------------------------------------------------------------------------------------|
+
 
 TC - TotalCoverage, F1R - F1 Score(Real), F1F - F1 Score(Fake)
 
@@ -73,7 +73,7 @@ TC - TotalCoverage, F1R - F1 Score(Real), F1F - F1 Score(Fake)
 | meta-llama/llama-4-scout-17b-16e-instruct       | 0.70     | 0.89             | 0.55             |
 | meta-llama/llama-4-maverick-17b-128e-instruct   | 0.66     | 0.89             | 0.55             |
 | qwen-qwq-32b                                     | 0.66     | 0.89             | 0.57            |
-|--------------------------------------------------------------------------------------------------|
+
 
 ## LLM Evaluation — Audio Inputs (Multilingual)
 
@@ -82,7 +82,6 @@ TC - TotalCoverage, F1R - F1 Score(Real), F1F - F1 Score(Fake)
 | llama3-8b-8192   | 0.22     | 0.57             | 0.28             |
 | mistral-saba-24b | 0.22     | 0.95             | 0.52             |
 | qwen-qwq-32b     | 0.51     | 0.66             | 0.64             |
-|-------------------------------------------------------------------|
 
 ## SarvamAI Speech & Translation Performance
 
@@ -93,4 +92,4 @@ TC - TotalCoverage, F1R - F1 Score(Real), F1F - F1 Score(Fake)
 | BLEU Score    | 0.2027  |
 | METEOR Score  | 0.4949  |
 | BERTScore     | 0.9149  |
-|-------------------------|
+
